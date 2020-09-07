@@ -1,16 +1,17 @@
 import logging
-from fastapi import FastAPI, Depends
-import os
-from app.config import get_settings, Settings
-from app.api import ping
+from fastapi import FastAPI
+from app.api import ping, summaries
 from app.db import init_db
 
 log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 
 def create_application() -> FastAPI:
     application = FastAPI()
     application.include_router(ping.router)
+    application.include_router(
+        summaries.router, prefix="/summaries", tags=["summaries"])
 
     return application
 

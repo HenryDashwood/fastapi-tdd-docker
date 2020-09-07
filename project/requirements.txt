@@ -1,6 +1,7 @@
-fastapi
-uvicorn
 asyncpg
-tortoise-orm
+fastapi
+gunicorn
 pytest
 requests
+tortoise-orm
+uvicorn
