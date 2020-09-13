@@ -1,7 +1,8 @@
-from fastapi.logger import logger
 import os
 from functools import lru_cache
-from pydantic import BaseSettings, AnyUrl
+
+from fastapi.logger import logger
+from pydantic import AnyUrl, BaseSettings
 
 
 class Settings(BaseSettings):

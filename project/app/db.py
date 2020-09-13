@@ -1,12 +1,12 @@
-from faulthandler import register
-from operator import add
 import logging
 import os
+
 from fastapi import FastAPI
 from tortoise import Tortoise, run_async
 from tortoise.contrib.fastapi import register_tortoise
 
 log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 
 def init_db(app: FastAPI) -> None:
@@ -15,15 +15,15 @@ def init_db(app: FastAPI) -> None:
         db_url=os.environ.get("DATABASE_URL"),
         modules={"models": ["app.models.tortoise"]},
         generate_schemas=False,
-        add_exception_handlers=True
+        add_exception_handlers=True,
     )
 
 
-async def generate_schemas() -> None:
-    log.info("Initialising Tortoise...")
+async def generate_schema() -> None:
+    log.info("Initializing Tortoise...")
     await Tortoise.init(
         db_url=os.environ.get("DATABASE_URL"),
-        modules={"models": ["models.tortoise"]}
+        modules={"models": ["models.tortoise"]},
     )
     log.info("Generating database schema via Tortoise...")
     await Tortoise.generate_schemas()
@@ -31,4 +31,4 @@ async def generate_schemas() -> None:
 
 
 if __name__ == "__main__":
-    run_async(generate_schemas())
+    run_async(generate_schema())

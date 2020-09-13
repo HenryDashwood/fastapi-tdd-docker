@@ -1,9 +1,11 @@
 import os
+
 import pytest
 from starlette.testclient import TestClient
 from tortoise.contrib.fastapi import register_tortoise
+
+from app.config import Settings, get_settings
 from app.main import create_application
-from app.config import get_settings, Settings
 
 
 def get_settings_override():
@@ -27,7 +29,7 @@ def test_app_with_db():
         db_url=os.environ.get("DATABASE_TEST_URL"),
         modules={"models": ["app.models.tortoise"]},
         generate_schemas=True,
-        add_exception_handlers=True
+        add_exception_handlers=True,
     )
     with TestClient(app) as test_client:
         yield test_client

@@ -1,7 +1,11 @@
 asyncpg
+black
 fastapi
+flake8
 gunicorn
+isort
 pytest
+pytest-cov
 requests
 tortoise-orm
 uvicorn
