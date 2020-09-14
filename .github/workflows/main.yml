@@ -3,7 +3,8 @@ name: Continuous Integration and Delivery
 on: [push]
 
 env:
-  IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/web
+  REPOSITORY: $(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')
+  IMAGE: docker.pkg.github.com/${{ env.REPOSITORY }}/web
 
 jobs:
   build:
