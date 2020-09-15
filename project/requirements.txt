@@ -1,13 +1,7 @@
 asyncpg
-black
 fastapi
-flake8
 gunicorn
-isort
 newspaper3k
-pytest
-pytest-cov
-pytest-xdist
 requests
 tortoise-orm
 uvicorn
